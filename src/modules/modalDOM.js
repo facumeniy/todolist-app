@@ -98,15 +98,23 @@ function modalDOM(){
 
         checkbox.addEventListener('click', () => {
             todo.classList.toggle('done');
+            dateIcon.classList.toggle('done');
+            editIcon.classList.toggle('done');
         })
 
         if(todoList[i].prio === ""){
         }
         else if(todoList[i].prio === "low"){
+            editIcon.classList.add('low');
+            dateIcon.classList.add('low');
             todo.classList.add('low');
         }else if(todoList[i].prio === "medium"){
+            editIcon.classList.add('medium');
+            dateIcon.classList.add('medium');
             todo.classList.add('medium');
         }else if(todoList[i].prio === "high"){
+            editIcon.classList.add('white');
+            dateIcon.classList.add('high');
             todo.classList.add('high');
         }
 

@@ -1,4 +1,6 @@
 function sidebarDOM(){
+    const todoPage = document.querySelector(".main-page");
+
     const menuBtn = document.getElementById("menu-btn");
     const sidebar = document.querySelector(".sidebar");
 
@@ -17,6 +19,9 @@ function sidebarDOM(){
     })
 
     projectsBtn.addEventListener('click', () => {
+        // TODOS HAVE TO BE STORED
+        // PROJECTS TEXT SHOULD CLEAR ALL TODOS
+
         projectsBtn.classList.toggle("rotate");
     })
 }
