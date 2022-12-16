@@ -290,9 +290,6 @@ header{
 
   /* STORAGE */
   .storage{
-    display: flex;
-    flex-direction: column;
-    display: flex;
-    border: 5px solid black;
+    display: none;
   }
   
