@@ -120,6 +120,13 @@ function modalDOM(){
             todo.classList.add('high');
         }
 
+        const todoCopy = todo.cloneNode(true);
+        const checkboxCopy = todoCopy.querySelector('.checkbox');
+        checkboxCopy.addEventListener('click', () => {
+            todoCopy.classList.toggle('done');
+        })
+        storage.appendChild(todoCopy);
+
         i++;
     }
 

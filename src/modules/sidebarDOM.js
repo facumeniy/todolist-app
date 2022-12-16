@@ -27,7 +27,6 @@ function sidebarDOM(){
     inboxText.addEventListener('click', () => {
         if(enabled === false){
             todoPage.innerHTML = storage.innerHTML;
-            storage.innerHTML = "";
             enabled = !enabled;
         }
     })
@@ -38,7 +37,6 @@ function sidebarDOM(){
 
     projectsText.addEventListener('click', () => {
         if(enabled === true){
-            storage.innerHTML = todoPage.innerHTML;
             todoPage.innerHTML = "";
             enabled = !enabled;
         }
