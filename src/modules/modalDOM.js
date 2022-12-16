@@ -17,6 +17,8 @@ function modalDOM(){
     const modalDate = document.getElementById("modal-date");
     const modalPrio = document.getElementById("modal-prio");
 
+    const storage = document.querySelector(".storage");
+
 
 
     function todo(title, desc, date, prio){
