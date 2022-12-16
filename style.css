@@ -66,8 +66,14 @@ header{
     justify-content: flex-start;
     align-items: center;
 }
+#inbox-text:hover{
+    cursor: pointer;
+}
 #inbox-btn{
     margin-left: 3%;
+}
+#projects-text:hover{
+    cursor: pointer;
 }
 #projects-btn{
     margin-left: 3%;
@@ -80,7 +86,6 @@ header{
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     background-color: rgb(88, 88, 88);
 }
 /* TODO STYLING */
@@ -170,7 +175,7 @@ header{
     transform: rotate(90deg);
 }
 .low{
-    color: #003E82;
+    color: #183e66;
     background-color: #8aa9e7;
 }
 .medium{
@@ -281,5 +286,13 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  /* STORAGE */
+  .storage{
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    border: 5px solid black;
   }
   
