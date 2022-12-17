@@ -13,10 +13,12 @@ function sidebarDOM(){
     const projectsBtn = document.getElementById("projects-btn");
     const projectsText = document.getElementById("projects-text");
     const newProject = document.getElementById("new-project-btn");
-    const allProjects = document.querySelectorAll(".project");
+    const projectList = document.getElementById("projects");
+    let allProjects = document.querySelectorAll(".project");
     // MODAL 
     const projectsForm = document.getElementById("projects-form");
     const projectsModal = document.getElementById("projects-modal");
+    const projectsTitle = document.getElementById("project-title");
     const projectsCloseBtn = document.getElementById("projects-close-button");
     // END OF SELECTORS
 
@@ -71,8 +73,26 @@ function sidebarDOM(){
     projectsForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // NEW PROJECT
-    
+        const projectContainer = document.createElement("div");
+        projectContainer.classList.add("project");
+        const projectText = document.createElement("h5");
+        projectText.innerText = projectsTitle.value;
+        projectText.classList.add("sidebar-text");
+
+        const projectIco = document.createElement("span");
+        projectIco.innerText = "folder_open";
+        projectIco.classList.add("projects-icon");
+        projectIco.classList.add("material-symbols-outlined");
+        
+        projectContainer.appendChild(projectIco);
+        projectContainer.appendChild(projectText);
+        projectList.appendChild(projectContainer);
+
+        // TRYING TO MAKE FOLDER ICON SMALLER
+        // STORE NEW PROJECTS IN ANOTHER HIDDEN DIV
+
+        allProjects = document.querySelectorAll(".project");
+
         projectsModal.style.display = "none";
     })
 
