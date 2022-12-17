@@ -28,9 +28,15 @@
                 <span id="inbox-btn" class="material-symbols-outlined sidebar-button">inbox</span>
                 <h3 id="inbox-text" class="sidebar-text">Inbox</h3>
             </div>
-            <div id="projects" class="tab-container">
-                <span id="projects-btn" class="material-symbols-outlined sidebar-button">chevron_right</span>
-                <h3 id="projects-text" class="sidebar-text">Projects</h3>
+            <div id="projects">
+                <div id="projects-interactive">
+                    <span id="projects-btn" class="material-symbols-outlined sidebar-button">chevron_right</span>
+                    <h3 id="projects-text" class="sidebar-text">Projects</h3>
+                </div>
+                <div class="project">
+                    <span id="new-project-btn" class="material-symbols-outlined sidebar-button">add_circle</span>
+                    <h5 id="new-project-text" class="sidebar-text">New project</h5>
+                </div>
             </div>
         </div>
         <!-- TODOS -->
@@ -70,12 +76,33 @@
                     </div>
                 </div>
                 <div class="modal-buttons">
-                    <button class="modal-button" id="close-button">Close</button>
+                    <div class="modal-button" id="close-button">Close</div>
                     <button type="submit" class="modal-button" id="add-button">Add</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- MODAL -->
+        <!-- The Modal -->
+        <div id="projects-modal" class="projects-modal">
+            <!-- Modal content -->
+            <div class="projects-modal-content">
+                <form id="projects-form" action="">
+                    <div class="projects-modal-title-container">
+                        <h3>New project</h3>
+                    </div>
+                    <div class="projects-modal-input-container">
+                        <input type="text" id="project-title" placeholder="Project Name">
+                    </div>
+                    <div class="projects-modal-buttons">
+                        <div class="projects-modal-button" id="projects-close-button">Close</div>
+                        <button type="submit" class="projects-modal-button" id="projects-add-button">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
 
     <div class="storage"></div>
     
