@@ -3,6 +3,7 @@ function sidebarDOM(){
     const todoPage = document.querySelector(".main-page");
     const newToDo = document.querySelector(".new-todo");
     const storage = document.querySelector(".storage");
+    const allStorages = document.querySelector(".all-storages");
     // SIDEBAR
     const sidebar = document.querySelector(".sidebar");
     const menuBtn = document.getElementById("menu-btn");
@@ -15,11 +16,16 @@ function sidebarDOM(){
     const newProject = document.getElementById("new-project-btn");
     const projectList = document.getElementById("projects");
     let allProjects = document.querySelectorAll(".project");
-    // MODAL 
+    // NEW PROJECT MODAL 
     const projectsForm = document.getElementById("projects-form");
     const projectsModal = document.getElementById("projects-modal");
     const projectsTitle = document.getElementById("project-title");
     const projectsCloseBtn = document.getElementById("projects-close-button");
+    // XD
+    const newModal = document.getElementById("new-modal");
+    const newForm = document.getElementById("new-form");
+    const newTitle = document.getElementById("new-title");
+    const newCloseBtn = document.getElementById("new-close-button");
     // END OF SELECTORS
 
     // BY DEFAULT ON LOAD
@@ -53,26 +59,11 @@ function sidebarDOM(){
         }
     })
 
-    projectsText.addEventListener('click', () => {
-        if(enabled === true){
-            newToDo.classList.add("hide");
-            todoPage.innerHTML = "";
-            enabled = !enabled;
-            // THIS GOES IN A FUNCTION
-            if(todoPage.innerHTML === ""){
-                const messageContainer = document.createElement("div");
-                messageContainer.classList.add("message");
-                const messageText = document.createElement("h4");
-                messageText.innerText = "You don't have any projects";
-                messageContainer.appendChild(messageText);
-                todoPage.appendChild(messageContainer);
-            }
-        }
-    })
-
     projectsForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        enabled = !enabled;
 
+        // CREATES PROJECT IN SIDEBAR
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("project");
         const projectText = document.createElement("h5");
@@ -88,12 +79,58 @@ function sidebarDOM(){
         projectContainer.appendChild(projectText);
         projectList.appendChild(projectContainer);
 
-        // TRYING TO MAKE FOLDER ICON SMALLER
-        // STORE NEW PROJECTS IN ANOTHER HIDDEN DIV
+        todoPage.innerHTML = "";
+        newToDo.classList.add("hide");
 
+        // ADDS NEW TODO BUTTON
+        const projectNewToDo = document.createElement("div");
+        projectNewToDo.classList.add("new-todo");
+        todoPage.appendChild(projectNewToDo);
+
+        // CREATES STORAGE DIV
+        const projectStorage = document.createElement("div");
+        projectStorage.classList.add("storage");
+        allStorages.appendChild(projectStorage);
+
+        // UPDATES PROJECTS & REMOVES ORIGINAL BUTTON
         allProjects = document.querySelectorAll(".project");
-
         projectsModal.style.display = "none";
+
+        // CREATES NEW TO DO & SAVES IT IN STORAGE
+        projectNewToDo.addEventListener('click', () => {
+            const todo = document.createElement('div');
+            todo.classList.add('todo');
+            const a = document.createElement('h3');
+            a.innerText = "A";
+            todo.appendChild(a);
+            todoPage.appendChild(todo);
+
+            const todoCopy = todo.cloneNode(true);
+            projectStorage.appendChild(todoCopy);
+        })
+
+        projectText.addEventListener('click', () => {
+            todoPage.innerHTML = projectStorage.innerHTML;
+            const projectNewToDo = document.createElement("div");
+            projectNewToDo.classList.add("new-todo");
+            todoPage.appendChild(projectNewToDo);
+            newToDo.classList.add("hide");
+            enabled = false;
+
+            projectNewToDo.addEventListener('click', () => {
+                const todo = document.createElement('div');
+                todo.classList.add('todo');
+
+                const a = document.createElement('h3');
+                a.innerText = "A";
+                todo.appendChild(a);
+
+                todoPage.appendChild(todo);
+    
+                const todoCopy = todo.cloneNode(true);
+                projectStorage.appendChild(todoCopy);
+            })
+        }) 
     })
 
     newProject.addEventListener('click', () => {
@@ -106,7 +143,7 @@ function sidebarDOM(){
 
     window.onclick = function(event) {
         if (event.target == projectsModal) {
-          projectsModal.style.display = "none";
+            projectsModal.style.display = "none";
         }
       }
 }

@@ -93,7 +93,7 @@
                         <h3>New project</h3>
                     </div>
                     <div class="projects-modal-input-container">
-                        <input type="text" id="project-title" placeholder="Project Name">
+                        <input type="text" id="project-title" placeholder="Project Name" required>
                     </div>
                     <div class="projects-modal-buttons">
                         <div class="projects-modal-button" id="projects-close-button">Close</div>
@@ -102,9 +102,28 @@
                 </form>
             </div>
         </div>
-    
 
-    <div class="storage"></div>
+        <div class="all-storages">
+            <div class="storage"></div>
+        </div>
+    
+        <div id="new-modal" class="new-modal">
+            <div class="new-modal-content">
+                <form id="new-form" action="">
+                    <div class="new-modal-title-container">
+                        <h3>New todo</h3>
+                    </div>
+                    <div class="new-modal-input-container">
+                        <input type="text" id="new-title" placeholder="todo Name">
+                    </div>
+                    <div class="new-modal-buttons">
+                        <button type="submit" class="new-modal-button" id="new-close-button">Close</button>
+                        <button type="submit" class="new-modal-button" id="new-add-button">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
     
     <script src="main.js"></script>
 </body>

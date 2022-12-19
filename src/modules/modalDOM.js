@@ -10,15 +10,12 @@ function modalDOM(){
     const newToDoBtn = document.getElementById("add");
     const modal = document.getElementById("modal");
     const closeBtn = document.getElementById("close-button");
-    const addBtn = document.getElementById("add-button");
-
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
     const modalDate = document.getElementById("modal-date");
     const modalPrio = document.getElementById("modal-prio");
 
     const storage = document.querySelector(".storage");
-
 
 
     function todo(title, desc, date, prio){
@@ -32,7 +29,7 @@ function modalDOM(){
         todoList.push(new todo(a, b, c, d));
     };
 
-    function newToDo(){
+    function newToDo(container){
         const todo = document.createElement('div');
         todo.classList.add('todo');
         todoPage.appendChild(todo);
@@ -125,7 +122,7 @@ function modalDOM(){
         checkboxCopy.addEventListener('click', () => {
             todoCopy.classList.toggle('done');
         })
-        storage.appendChild(todoCopy);
+        container.appendChild(todoCopy);
 
         i++;
     }
@@ -143,7 +140,7 @@ function modalDOM(){
         let d = modalPrio.value;
 
         addTodo(a, b, c, d);
-        newToDo();
+        newToDo(storage);
 
         modal.style.display = "none";
     })
