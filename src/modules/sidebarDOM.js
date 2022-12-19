@@ -100,13 +100,143 @@ function sidebarDOM(){
         projectNewToDo.addEventListener('click', () => {
             const todo = document.createElement('div');
             todo.classList.add('todo');
-            const a = document.createElement('h3');
-            a.innerText = "A";
-            todo.appendChild(a);
-            todoPage.appendChild(todo);
+            // TEXT CONTAINER
+            const titleSelectorContainer = document.createElement('div');
+            titleSelectorContainer.classList.add('title-selector-container');
+            todo.appendChild(titleSelectorContainer);
+            ///// TEXT
+            const textSelector = document.createElement("input");
+            textSelector.setAttribute("type", "text");
+            textSelector.classList.add("title-selector");
+            textSelector.placeholder = "To do title";
+            titleSelectorContainer.appendChild(textSelector);
+            // DATE CONTAINER
+            const dateSelectorContainer = document.createElement('div');
+            dateSelectorContainer.classList.add('date-selector-container');
+            todo.appendChild(dateSelectorContainer);
+            ///// DATE
+            const dateSelector = document.createElement("input");
+            dateSelector.setAttribute("type", "date");
+            dateSelectorContainer.appendChild(dateSelector);
+            // PRIO CONTAINER
+            const prioContainer = document.createElement('div');
+            prioContainer.classList.add('priority-container');
+            todo.appendChild(prioContainer);
+            // PRIO SELECTOR
+            const select = document.createElement('select');
+            const option1 = document.createElement('option');
+            option1.value = 'low';
+            option1.text = 'Low';
+            select.appendChild(option1);
 
-            const todoCopy = todo.cloneNode(true);
-            projectStorage.appendChild(todoCopy);
+            const option2 = document.createElement('option');
+            option2.value = 'mid';
+            option2.text = 'Medium';
+            select.appendChild(option2);
+
+            const option3 = document.createElement('option');
+            option3.value = 'high';
+            option3.text = 'High';
+            select.appendChild(option3);
+
+            prioContainer.appendChild(select);
+            // BUTTONS CONTAINER
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('buttons-container');
+            todo.appendChild(buttonContainer);
+            ///// CLOSE BUTTON
+            const closeBtn = document.createElement("button");
+            closeBtn.innerText = "Close";
+            closeBtn.id = "close-button";
+            buttonContainer.append(closeBtn);
+            ///// ADD BUTTON
+            const addBtn = document.createElement("button");
+            addBtn.innerText = "Add";
+            addBtn.id = "add-button";
+            buttonContainer.append(addBtn);
+
+            textSelector.addEventListener('change', () => {
+                if(textSelector.value === ""){
+                    addBtn.disabled = true;
+                }else{
+                    addBtn.addEventListener('click', () => {
+                        todo.innerHTML = "";
+
+                        const editCont = document.createElement('div');
+                        editCont.classList.add('edit-container');
+                        todo.appendChild(editCont);
+
+                        const editIcon = document.createElement('span');
+                        editIcon.innerText = "edit_note";
+                        editIcon.classList.add('material-symbols-outlined');
+                        editIcon.classList.add('edit-btn');
+                        editCont.appendChild(editIcon);
+
+                        const todoTitleContainer = document.createElement('div');
+                        todoTitleContainer.classList.add('text-container');
+                        todo.appendChild(todoTitleContainer);
+        
+                        const todoTitle = document.createElement('h3');
+                        todoTitle.classList.add('todo-title');
+                        todoTitle.innerText = textSelector.value;
+                        todoTitleContainer.appendChild(todoTitle);
+
+                        const dateCont = document.createElement('div');
+                        dateCont.classList.add('date-container');
+                        todo.appendChild(dateCont);
+
+                        const dateIcon = document.createElement('span');
+                        dateIcon.innerText = "calendar_today";
+                        dateIcon.classList.add('material-symbols-outlined');
+                        dateCont.appendChild(dateIcon);
+
+                        if(dateSelector.value === ""){
+                            const todoDate = document.createElement('h3');
+                            todoDate.classList.add('date');
+                            todoDate.innerText = "No date";
+                            dateCont.appendChild(todoDate);
+                        }else if(dateSelector.value !== ""){
+                            const todoDate = document.createElement('h3');
+                            todoDate.classList.add('date');
+                            todoDate.innerText = dateSelector.value;
+                            dateCont.appendChild(todoDate);
+                        }
+
+                        const checkCont = document.createElement('div');
+                        checkCont.classList.add('check-container');
+                        todo.appendChild(checkCont);
+                        const checkbox = document.createElement('input');
+                        checkbox.setAttribute("type", "checkbox");
+                        checkbox.classList.add('checkbox');
+                        checkCont.appendChild(checkbox);
+                        checkbox.addEventListener('click', () => {
+                            todo.classList.toggle('done');
+                            dateIcon.classList.toggle('done');
+                            editIcon.classList.toggle('done');
+                        })
+
+                        if(select.value === ""){
+                        }
+                        else if(select.value === "low"){
+                            editIcon.classList.add('low');
+                            dateIcon.classList.add('low');
+                            todo.classList.add('low');
+                        }else if(select.value === "mid"){
+                            editIcon.classList.add('medium');
+                            dateIcon.classList.add('medium');
+                            todo.classList.add('medium');
+                        }else if(select.value === "high"){
+                            editIcon.classList.add('white');
+                            dateIcon.classList.add('high');
+                            todo.classList.add('high');
+                        }
+
+                        const todoCopy = todo.cloneNode(true);
+                        projectStorage.appendChild(todoCopy);
+                    })
+                }
+            })
+            todoPage.appendChild(todo);
         })
 
         projectText.addEventListener('click', () => {
@@ -119,16 +249,144 @@ function sidebarDOM(){
 
             projectNewToDo.addEventListener('click', () => {
                 const todo = document.createElement('div');
-                todo.classList.add('todo');
+            todo.classList.add('todo');
+            // TEXT CONTAINER
+            const titleSelectorContainer = document.createElement('div');
+            titleSelectorContainer.classList.add('title-selector-container');
+            todo.appendChild(titleSelectorContainer);
+            ///// TEXT
+            const textSelector = document.createElement("input");
+            textSelector.setAttribute("type", "text");
+            textSelector.classList.add("title-selector");
+            textSelector.placeholder = "To do title";
+            titleSelectorContainer.appendChild(textSelector);
+            // DATE CONTAINER
+            const dateSelectorContainer = document.createElement('div');
+            dateSelectorContainer.classList.add('date-selector-container');
+            todo.appendChild(dateSelectorContainer);
+            ///// DATE
+            const dateSelector = document.createElement("input");
+            dateSelector.setAttribute("type", "date");
+            dateSelectorContainer.appendChild(dateSelector);
+            // PRIO CONTAINER
+            const prioContainer = document.createElement('div');
+            prioContainer.classList.add('priority-container');
+            todo.appendChild(prioContainer);
+            // PRIO SELECTOR
+            const select = document.createElement('select');
+            const option1 = document.createElement('option');
+            option1.value = 'low';
+            option1.text = 'Low';
+            select.appendChild(option1);
 
-                const a = document.createElement('h3');
-                a.innerText = "A";
-                todo.appendChild(a);
+            const option2 = document.createElement('option');
+            option2.value = 'mid';
+            option2.text = 'Medium';
+            select.appendChild(option2);
 
+            const option3 = document.createElement('option');
+            option3.value = 'high';
+            option3.text = 'High';
+            select.appendChild(option3);
+
+            prioContainer.appendChild(select);
+            // BUTTONS CONTAINER
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('buttons-container');
+            todo.appendChild(buttonContainer);
+            ///// CLOSE BUTTON
+            const closeBtn = document.createElement("button");
+            closeBtn.innerText = "Close";
+            closeBtn.id = "close-button";
+            buttonContainer.append(closeBtn);
+            ///// ADD BUTTON
+            const addBtn = document.createElement("button");
+            addBtn.innerText = "Add";
+            addBtn.id = "add-button";
+            buttonContainer.append(addBtn);
+
+            textSelector.addEventListener('change', () => {
+                if(textSelector.value === ""){
+                    addBtn.disabled = true;
+                }else{
+                    addBtn.addEventListener('click', () => {
+                        todo.innerHTML = "";
+
+                        const editCont = document.createElement('div');
+                        editCont.classList.add('edit-container');
+                        todo.appendChild(editCont);
+
+                        const editIcon = document.createElement('span');
+                        editIcon.innerText = "edit_note";
+                        editIcon.classList.add('material-symbols-outlined');
+                        editIcon.classList.add('edit-btn');
+                        editCont.appendChild(editIcon);
+
+                        const todoTitleContainer = document.createElement('div');
+                        todoTitleContainer.classList.add('text-container');
+                        todo.appendChild(todoTitleContainer);
+        
+                        const todoTitle = document.createElement('h3');
+                        todoTitle.classList.add('todo-title');
+                        todoTitle.innerText = textSelector.value;
+                        todoTitleContainer.appendChild(todoTitle);
+
+                        const dateCont = document.createElement('div');
+                        dateCont.classList.add('date-container');
+                        todo.appendChild(dateCont);
+
+                        const dateIcon = document.createElement('span');
+                        dateIcon.innerText = "calendar_today";
+                        dateIcon.classList.add('material-symbols-outlined');
+                        dateCont.appendChild(dateIcon);
+
+                        if(dateSelector.value === ""){
+                            const todoDate = document.createElement('h3');
+                            todoDate.classList.add('date');
+                            todoDate.innerText = "No date";
+                            dateCont.appendChild(todoDate);
+                        }else if(dateSelector.value !== ""){
+                            const todoDate = document.createElement('h3');
+                            todoDate.classList.add('date');
+                            todoDate.innerText = dateSelector.value;
+                            dateCont.appendChild(todoDate);
+                        }
+
+                        const checkCont = document.createElement('div');
+                        checkCont.classList.add('check-container');
+                        todo.appendChild(checkCont);
+                        const checkbox = document.createElement('input');
+                        checkbox.setAttribute("type", "checkbox");
+                        checkbox.classList.add('checkbox');
+                        checkCont.appendChild(checkbox);
+                        checkbox.addEventListener('click', () => {
+                            todo.classList.toggle('done');
+                            dateIcon.classList.toggle('done');
+                            editIcon.classList.toggle('done');
+                        })
+
+                        if(select.value === ""){
+                        }
+                        else if(select.value === "low"){
+                            editIcon.classList.add('low');
+                            dateIcon.classList.add('low');
+                            todo.classList.add('low');
+                        }else if(select.value === "mid"){
+                            editIcon.classList.add('medium');
+                            dateIcon.classList.add('medium');
+                            todo.classList.add('medium');
+                        }else if(select.value === "high"){
+                            editIcon.classList.add('white');
+                            dateIcon.classList.add('high');
+                            todo.classList.add('high');
+                        }
+
+                        const todoCopy = todo.cloneNode(true);
+                        projectStorage.appendChild(todoCopy);
+                    })
+                }
+            })
                 todoPage.appendChild(todo);
-    
-                const todoCopy = todo.cloneNode(true);
-                projectStorage.appendChild(todoCopy);
             })
         }) 
     })
