@@ -9,6 +9,7 @@ body{
 }
 .material-symbols-outlined {
     color: #1f1f1f;
+    user-select: none;
   font-variation-settings:
   'FILL' 0,
   'wght' 500,
