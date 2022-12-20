@@ -1,5 +1,6 @@
 *{
     margin: 0;
+    box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
 body{
@@ -21,7 +22,8 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(248, 51, 25);
+    background-color: #118ab2;
+    z-index: 0;
 }
 .left-container{
     height: 80%;
@@ -29,12 +31,12 @@ header{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black;
 }
 /* SIDEBAR STYLING */
 #menu-btn{
+    color: white;
     user-select: none;
-    margin-left: 3%;
+    margin-left: 5%;
 }
 .sidebar-button{
     user-select: none;
@@ -52,21 +54,23 @@ header{
 .sidebar{
     height: 100%;
     width: 20%;
-    padding: 0.2rem;
+    padding: 0.7rem;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    z-index: 999;
+    box-shadow: 0px 10px 10px 1px rgba(0,0,0,0.2);
 }
 .tab-container{
     width: 100%;
     height: 50px;
-    margin-top: 10px;
-    border: 1px solid black;
+    margin-top: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    border-radius: 5px;
 }
 #inbox-text:hover{
     cursor: pointer;
@@ -85,10 +89,11 @@ header{
 #projects-interactive{
     width: 100%;
     height: 50px;
+    margin-bottom: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid blue;
+    border-radius: 5px;
 }
 #projects-text:hover{
     cursor: pointer;
@@ -103,9 +108,7 @@ header{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: grey;
+    border-radius: 5px;
 }
 #new-project-btn{
     font-size: 1.2rem;
@@ -115,6 +118,7 @@ header{
     cursor: pointer;
 }
 .sidebar-text{
+    user-select: none;
     margin-left: 5%;
 }
 .sidebar-text:hover{
@@ -124,8 +128,14 @@ header{
     height: 100%;
     width: 100%;
     display: flex;
+    background-color: white;
+}
+.todos{
+    height: 100%;
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    background-color: rgb(88, 88, 88);
+    background-color: white;
 }
 /* TODO STYLING */
 .todo{
@@ -136,7 +146,8 @@ header{
     align-items: center;
     display: flex;
     background-color: white;
-    border: 1px solid red;
+    border: 1px solid black;
+
 }
 .edit-container{
     height: 100%;
@@ -229,7 +240,7 @@ header{
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: red;
+    background-color: #118ab2;
 }
 .new-todo:hover{
     cursor: pointer;
@@ -237,6 +248,22 @@ header{
 }
 #add{
     color: white;
+}
+.delete-todo{
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    top: 87%;
+    left: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ce3838;
+}
+.delete-todo:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 
@@ -267,15 +294,18 @@ header{
 .white{
     color: white;
 }
-.message{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.selected{
+    background-color: #d1d1d1;
+}
+.disabled{
+    pointer-events: none;
+    opacity: 0.3;
 }
 .projects-icon{
     margin-left: 3%;
+}
+.white{
+    color: white;
 }
 
 
@@ -433,15 +463,8 @@ header{
 
   /* STORAGE */
   .all-storages{
-    display: flex;
-    flex-direction: column;
+    display: none;
   }
-  .storage{
-    height: 50px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 5px solid yellowgreen;
-  }
+
 
   
