@@ -4,9 +4,11 @@ function modalDOM(){
     let i = 0;
 
     const todoPage = document.querySelector(".main-page");
+    const todosCont = document.querySelector(".todos");
 
     // MODAL GET ELEMENTS
     const form = document.getElementById("form");
+    const deleteToDoBtn = document.getElementById("deletebtn");
     const newToDoBtn = document.getElementById("add");
     const modal = document.getElementById("modal");
     const closeBtn = document.getElementById("close-button");
@@ -16,6 +18,20 @@ function modalDOM(){
     const modalPrio = document.getElementById("modal-prio");
 
     const storage = document.querySelector(".storage");
+
+    const clearToDo = document.createElement("div");
+    clearToDo.classList.add("delete-todo");
+    const deleteToDoIcon = document.createElement("span");
+    deleteToDoIcon.innerText = "delete";
+    deleteToDoIcon.classList.add("material-symbols-outlined");
+    deleteToDoIcon.classList.add("white");
+    clearToDo.appendChild(deleteToDoIcon);
+    todoPage.appendChild(clearToDo);
+
+    clearToDo.addEventListener('click', () => {
+        todosCont.innerHTML = "";
+        storage.innerHTML = "";
+    })
 
     // FUNCTIONS
     function todo(title, desc, date, prio){
@@ -32,7 +48,7 @@ function modalDOM(){
     function newToDo(container){
         const todo = document.createElement('div');
         todo.classList.add('todo');
-        todoPage.appendChild(todo);
+        todosCont.appendChild(todo);
 
         const editCont = document.createElement('div');
         editCont.classList.add('edit-container');

@@ -1,6 +1,7 @@
 function sidebarDOM(){
     // DIVS
     const todoPage = document.querySelector(".main-page");
+    const todosCont = document.querySelector(".todos");
     const newToDo = document.querySelector(".new-todo");
     const storage = document.querySelector(".storage");
     const allStorages = document.querySelector(".all-storages");
@@ -8,9 +9,11 @@ function sidebarDOM(){
     const sidebar = document.querySelector(".sidebar");
     const menuBtn = document.getElementById("menu-btn");
     ///
+    const inboxContainer = document.getElementById("inbox");
     const inboxBtn = document.getElementById("inbox-btn");
     const inboxText = document.getElementById("inbox-text");
     ////
+    const projectsContainer = document.getElementById("projects-interactive");
     const projectsBtn = document.getElementById("projects-btn");
     const projectsText = document.getElementById("projects-text");
     const newProject = document.getElementById("new-project-btn");
@@ -21,16 +24,13 @@ function sidebarDOM(){
     const projectsModal = document.getElementById("projects-modal");
     const projectsTitle = document.getElementById("project-title");
     const projectsCloseBtn = document.getElementById("projects-close-button");
-    // XD
-    const newModal = document.getElementById("new-modal");
-    const newForm = document.getElementById("new-form");
-    const newTitle = document.getElementById("new-title");
-    const newCloseBtn = document.getElementById("new-close-button");
     // END OF SELECTORS
 
     // BY DEFAULT ON LOAD
+    
     let enabled = true;
     sidebar.classList.add("hide");
+    inboxContainer.classList.add("selected");
     for(let project of allProjects){
         project.classList.add("hide");
     }
@@ -45,10 +45,36 @@ function sidebarDOM(){
     })
 
     inboxText.addEventListener('click', () => {
+        inboxContainer.classList.add("selected");
+        for(let project of allProjects){
+            project.classList.remove("selected");
+        }
         if(enabled === false){
-            todoPage.innerHTML = storage.innerHTML;
+            todosCont.innerHTML = storage.innerHTML;
+
+            const clearToDo = document.createElement("div");
+            clearToDo.classList.add("delete-todo");
+            const deleteToDoIcon = document.createElement("span");
+            deleteToDoIcon.innerText = "delete";
+            deleteToDoIcon.classList.add("material-symbols-outlined");
+            deleteToDoIcon.classList.add("white");
+            clearToDo.appendChild(deleteToDoIcon);
+            todoPage.appendChild(clearToDo);
+
+            clearToDo.addEventListener('click', () => {
+                todosCont.innerHTML = "";
+                storage.innerHTML = "";
+            })
+
             newToDo.classList.remove("hide");
             enabled = !enabled;
+        }
+    })
+
+    projectsText.addEventListener('click', () => {
+        projectsBtn.classList.toggle("rotate");
+        for(let project of allProjects){
+            project.classList.toggle("hide");
         }
     })
 
@@ -61,31 +87,52 @@ function sidebarDOM(){
 
     projectsForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        inboxContainer.classList.remove("selected");
+        for(let project of allProjects){
+            project.classList.remove("selected");
+        }
         enabled = !enabled;
 
         // CREATES PROJECT IN SIDEBAR
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("project");
+        projectContainer.classList.add("selected");
         const projectText = document.createElement("h5");
         projectText.innerText = projectsTitle.value;
         projectText.classList.add("sidebar-text");
 
         const projectIco = document.createElement("span");
-        projectIco.innerText = "folder_open";
+        projectIco.innerText = "arrow_right";
         projectIco.classList.add("projects-icon");
         projectIco.classList.add("material-symbols-outlined");
+        projectIco.classList.add("sidebar-button");
         
         projectContainer.appendChild(projectIco);
         projectContainer.appendChild(projectText);
         projectList.appendChild(projectContainer);
 
-        todoPage.innerHTML = "";
+        todosCont.innerHTML = "";
         newToDo.classList.add("hide");
 
         // ADDS NEW TODO BUTTON
         const projectNewToDo = document.createElement("div");
         projectNewToDo.classList.add("new-todo");
+        const newToDoIcon = document.createElement("span");
+        newToDoIcon.innerText = "add";
+        newToDoIcon.classList.add("material-symbols-outlined");
+        newToDoIcon.classList.add("white");
+        projectNewToDo.appendChild(newToDoIcon);
         todoPage.appendChild(projectNewToDo);
+
+        // ADDS CLEAR TODO BUTTON
+        const clearToDo = document.createElement("div");
+        clearToDo.classList.add("delete-todo");
+        const deleteToDoIcon = document.createElement("span");
+        deleteToDoIcon.innerText = "delete";
+        deleteToDoIcon.classList.add("material-symbols-outlined");
+        deleteToDoIcon.classList.add("white");
+        clearToDo.appendChild(deleteToDoIcon);
+        todoPage.appendChild(clearToDo);
 
         // CREATES STORAGE DIV
         const projectStorage = document.createElement("div");
@@ -125,19 +172,24 @@ function sidebarDOM(){
             // PRIO SELECTOR
             const select = document.createElement('select');
             const option1 = document.createElement('option');
-            option1.value = 'low';
-            option1.text = 'Low';
+            option1.value = '';
+            option1.text = 'None';
             select.appendChild(option1);
 
             const option2 = document.createElement('option');
-            option2.value = 'mid';
-            option2.text = 'Medium';
+            option2.value = 'low';
+            option2.text = 'Low';
             select.appendChild(option2);
 
             const option3 = document.createElement('option');
-            option3.value = 'high';
-            option3.text = 'High';
+            option3.value = 'mid';
+            option3.text = 'Medium';
             select.appendChild(option3);
+
+            const option4 = document.createElement('option');
+            option4.value = 'high';
+            option4.text = 'High';
+            select.appendChild(option4);
 
             prioContainer.appendChild(select);
             // BUTTONS CONTAINER
@@ -154,11 +206,13 @@ function sidebarDOM(){
             addBtn.innerText = "Add";
             addBtn.id = "add-button";
             buttonContainer.append(addBtn);
+            addBtn.classList.add("disabled");
 
             textSelector.addEventListener('change', () => {
                 if(textSelector.value === ""){
                     addBtn.disabled = true;
                 }else{
+                    addBtn.classList.remove("disabled");
                     addBtn.addEventListener('click', () => {
                         todo.innerHTML = "";
 
@@ -205,15 +259,6 @@ function sidebarDOM(){
                         const checkCont = document.createElement('div');
                         checkCont.classList.add('check-container');
                         todo.appendChild(checkCont);
-                        const checkbox = document.createElement('input');
-                        checkbox.setAttribute("type", "checkbox");
-                        checkbox.classList.add('checkbox');
-                        checkCont.appendChild(checkbox);
-                        checkbox.addEventListener('click', () => {
-                            todo.classList.toggle('done');
-                            dateIcon.classList.toggle('done');
-                            editIcon.classList.toggle('done');
-                        })
 
                         if(select.value === ""){
                         }
@@ -236,20 +281,47 @@ function sidebarDOM(){
                     })
                 }
             })
-            todoPage.appendChild(todo);
+            todosCont.appendChild(todo);
+        })
+
+        clearToDo.addEventListener('click', () => {
+                todosCont.innerHTML = "";
+                projectStorage.innerHTML = "";
         })
 
         projectText.addEventListener('click', () => {
-            todoPage.innerHTML = projectStorage.innerHTML;
+            inboxContainer.classList.remove("selected");
+            for(let project of allProjects){
+                project.classList.remove("selected");
+            }
+            projectContainer.classList.add("selected");
+            // ADD BUTTON
+            todosCont.innerHTML = projectStorage.innerHTML;
             const projectNewToDo = document.createElement("div");
             projectNewToDo.classList.add("new-todo");
+            const newToDoIcon = document.createElement("span");
+            newToDoIcon.innerText = "add";
+            newToDoIcon.classList.add("material-symbols-outlined");
+            newToDoIcon.classList.add("white");
+            projectNewToDo.appendChild(newToDoIcon);
             todoPage.appendChild(projectNewToDo);
+            // CLEAR BUTTON
+            const clearToDo = document.createElement("div");
+            clearToDo.classList.add("delete-todo");
+            const deleteToDoIcon = document.createElement("span");
+            deleteToDoIcon.innerText = "delete";
+            deleteToDoIcon.classList.add("material-symbols-outlined");
+            deleteToDoIcon.classList.add("white");
+            clearToDo.appendChild(deleteToDoIcon);
+            todoPage.appendChild(clearToDo);
+
             newToDo.classList.add("hide");
             enabled = false;
 
+
             projectNewToDo.addEventListener('click', () => {
                 const todo = document.createElement('div');
-            todo.classList.add('todo');
+                todo.classList.add('todo');
             // TEXT CONTAINER
             const titleSelectorContainer = document.createElement('div');
             titleSelectorContainer.classList.add('title-selector-container');
@@ -304,11 +376,13 @@ function sidebarDOM(){
             addBtn.innerText = "Add";
             addBtn.id = "add-button";
             buttonContainer.append(addBtn);
+            addBtn.classList.add("disabled");
 
             textSelector.addEventListener('change', () => {
                 if(textSelector.value === ""){
                     addBtn.disabled = true;
                 }else{
+                    addBtn.classList.remove("disabled");
                     addBtn.addEventListener('click', () => {
                         todo.innerHTML = "";
 
@@ -355,15 +429,7 @@ function sidebarDOM(){
                         const checkCont = document.createElement('div');
                         checkCont.classList.add('check-container');
                         todo.appendChild(checkCont);
-                        const checkbox = document.createElement('input');
-                        checkbox.setAttribute("type", "checkbox");
-                        checkbox.classList.add('checkbox');
-                        checkCont.appendChild(checkbox);
-                        checkbox.addEventListener('click', () => {
-                            todo.classList.toggle('done');
-                            dateIcon.classList.toggle('done');
-                            editIcon.classList.toggle('done');
-                        })
+
 
                         if(select.value === ""){
                         }
@@ -386,7 +452,12 @@ function sidebarDOM(){
                     })
                 }
             })
-                todoPage.appendChild(todo);
+                todosCont.appendChild(todo);
+            })
+            clearToDo.addEventListener('click', () => {
+                todosCont.innerHTML = "";
+                projectStorage.innerHTML = "";
+
             })
         }) 
     })
