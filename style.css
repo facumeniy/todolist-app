@@ -142,12 +142,13 @@ header{
 .todo{
     height: 10%;
     width: 100%;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     display: flex;
     background-color: white;
-    border: 1px solid black;
+    border-bottom: 1px solid #707070;
 
 }
 .edit-container{
@@ -156,7 +157,6 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid blue;
 }
 .edit-btn:hover{
     cursor: pointer;
@@ -168,7 +168,6 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
 }
 .date-container{
     height: 100%;
@@ -177,7 +176,6 @@ header{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black;
 }
 .date{
     margin-left: 5%;
@@ -188,7 +186,6 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
 }
 .checkbox:hover{
     cursor: pointer;
@@ -201,18 +198,24 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid blue;
 }
 .date-selector-container{
-    width: 10%;
+    width: 15%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid blue;
 }
 .title-selector{
+    padding: 10px;
     width: 100%;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #242424;
+    border-style: solid;
+    border-radius: 5px;
 }
 .priority-container{
     width: 20%;
@@ -220,15 +223,13 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid red;
 }
 .buttons-container{
     width: 20%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border: 3px solid blue;
 }
 /* ADD TODO BUTTON */
 .new-todo{
@@ -245,7 +246,7 @@ header{
 }
 .new-todo:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    background-color: #32b2dd;
 }
 #add{
     color: white;
@@ -264,7 +265,7 @@ header{
 }
 .delete-todo:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    background-color: #ec4848;
 }
 
 
@@ -305,103 +306,176 @@ header{
 .projects-icon{
     margin-left: 3%;
 }
-.white{
-    color: white;
-}
-
 
 
 /* MODAL STYLING */
-.modal {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+.modal{
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    display: flex;
+    width: 100%; 
+    height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.671); /* Black w/ opacity */
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0, 0, 0, 0.671); 
     display: none;
   }
-  
-  /* Modal Content/Box */
   .modal-content {
+    border-radius: 5px;
     background-color: #fefefe;
-    margin: 10% auto; /* 15% from the top and centered */
+    margin: 10% auto; 
     padding: 20px;
-    border: 1px solid #888;
-    width: 20%; /* Could be more or less, depending on screen size */
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    width: 20%; 
+    height: 40%;
   }
   .modal-inputs{
     width: 100%;
-    height: 60%;
+    height: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    border: 3px solid green;
+    justify-content: flex-start;
+    align-items: center;
   }
   .modal-container{
     height: 20%;
-    width: 100%;
+    width: 90%;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid red;
+  }
+  #modal-title{
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #242424;
+    border-style: solid;
+    border-radius: 5px;
+  }
+  #modal-desc{
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #242424;
+    border-style: solid;
+    border-radius: 5px;
   }
   .modal-date-prio-container{
-    height: 20%;
-    width: 100%;
+    height: 30%;
+    width: 90%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
   }
   .modal-date-container{
     height: 100%;
-    width: 50%;
+    min-width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
+  }
+  #modal label{
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #696969;
+  }
+  #modal-date{
+    width: 100%;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #242424;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 0px -5px 0px rgba(66,66,66,.0);
+    text-shadow: 0px 0px 5px rgba(66,66,66,.0);
   }
   .prio-container{
     height: 100%;
+    width: 100%;
     margin-left: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
+  }
+  #modal-prio{
+    width: 100%;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #242424;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 0px -5px 0px rgba(66,66,66,.0);
+    text-shadow: 0px 0px 5px rgba(66,66,66,.0);
   }
   .modal-buttons{
     width: 100%;
-    height: 10%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    border: 3px solid green;
   }
-  .modal-button:hover{
+  .modal-button{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px;
+    width: 5rem;
+    padding: 5px;
+    background-color: #FFFFFF;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+#close-button{
+    margin: 0px 15px;
+    width: 5rem;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #ce3838;
+    color: white;
+}
+#close-button:hover{
     cursor: pointer;
-  }
-  #form{
+    background-color: #ec4848;
+}
+#add-button{
+    margin: 0px 15px;
+    width: 5rem;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #118ab2;
+    border: none;
+    color: white;
+}
+#add-button:hover{
+    cursor: pointer;
+    background-color: #32b2dd;
+}
+#form{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
+}
   /* PROJECTS MODAL STYLING */
 .projects-modal {
     position: fixed; 
@@ -421,13 +495,13 @@ header{
     background-color: #fefefe;
     margin: 10% auto; 
     padding: 20px;
-    border: 1px solid #888;
     width: 20%; 
-    height: 40%;
+    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px;
   }
   #projects-form{
     width: 100%;
@@ -435,32 +509,69 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
   }
   .projects-modal-title-container{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+  }
+  #project-title{
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #242424;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 0px -5px 0px rgba(66,66,66,.0);
+    text-shadow: 0px 0px 5px rgba(66,66,66,.0);
   }
   .projects-modal-input-container{
-    width: 100%;
+    width: 85%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid red;
   }
   .projects-modal-buttons{
     width: 100%;
-    height: 10%;
+    height: 20%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    border: 3px solid green;
   }
-  .projects-modal-button:hover{
+  .projects-modal-button{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 20px;
+    width: 5rem;
+    padding: 5px;
+    background-color: #FFFFFF;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+#projects-close-button{
+    background-color: #ce3838;
+    color: white;
+}
+#projects-close-button:hover{
     cursor: pointer;
-  }
+    background-color: #ec4848;
+}
+#projects-add-button{
+    background-color: #118ab2;
+    border: none;
+    color: white;
+}
+#projects-add-button:hover{
+    cursor: pointer;
+    background-color: #32b2dd;
+}
 
   /* STORAGE */
   .all-storages{
