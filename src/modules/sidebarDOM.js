@@ -155,7 +155,7 @@ function sidebarDOM(){
             const textSelector = document.createElement("input");
             textSelector.setAttribute("type", "text");
             textSelector.classList.add("title-selector");
-            textSelector.placeholder = "To do title";
+            textSelector.placeholder = "Title";
             titleSelectorContainer.appendChild(textSelector);
             // DATE CONTAINER
             const dateSelectorContainer = document.createElement('div');
@@ -271,7 +271,7 @@ function sidebarDOM(){
                             dateIcon.classList.add('medium');
                             todo.classList.add('medium');
                         }else if(select.value === "high"){
-                            editIcon.classList.add('white');
+                            editIcon.classList.add('high');
                             dateIcon.classList.add('high');
                             todo.classList.add('high');
                         }
@@ -330,7 +330,7 @@ function sidebarDOM(){
             const textSelector = document.createElement("input");
             textSelector.setAttribute("type", "text");
             textSelector.classList.add("title-selector");
-            textSelector.placeholder = "To do title";
+            textSelector.placeholder = "Title";
             titleSelectorContainer.appendChild(textSelector);
             // DATE CONTAINER
             const dateSelectorContainer = document.createElement('div');
@@ -442,7 +442,7 @@ function sidebarDOM(){
                             dateIcon.classList.add('medium');
                             todo.classList.add('medium');
                         }else if(select.value === "high"){
-                            editIcon.classList.add('white');
+                            editIcon.classList.add('high');
                             dateIcon.classList.add('high');
                             todo.classList.add('high');
                         }
