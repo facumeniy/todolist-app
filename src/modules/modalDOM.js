@@ -128,7 +128,7 @@ function modalDOM(){
             dateIcon.classList.add('medium');
             todo.classList.add('medium');
         }else if(todoList[i].prio === "high"){
-            editIcon.classList.add('white');
+            editIcon.classList.add('high');
             dateIcon.classList.add('high');
             todo.classList.add('high');
         }
